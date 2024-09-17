@@ -1,0 +1,15 @@
+spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb  # URL format for H2 in-memory database with R2DBC
+    name: testdb
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Create and drop the schema on every test run
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: igaming_postgres
+    environment:
+      POSTGRES_DB: igaming
+      POSTGRES_USER: igaminguser
+      POSTGRES_PASSWORD: igamingpassword
+    volumes:
+      - postgres_igaming:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - igaming-network
+
+  pgadmin:
+    container_name: pgadmin_igaming
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_igaming:/var/lib/pgadmin
+    ports:
+      - "5051:80"
+    depends_on:
+      - postgres
+    networks:
+      - igaming-network
+    restart: unless-stopped
+
+volumes:
+  postgres_igaming:
+  pgadmin_igaming:
+
+
+networks:
+  igaming-network:
+    driver: bridge

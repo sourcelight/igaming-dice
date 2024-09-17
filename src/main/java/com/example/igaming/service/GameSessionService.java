@@ -7,22 +7,25 @@ package com.example.igaming.service;
 
 import com.example.igaming.data.entity.GameSession;
 import com.example.igaming.repository.GameSessionRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Random;
 
+
 @Service
+@RequiredArgsConstructor
 public class GameSessionService {
 
-    private final GameSessionRepository gameSessionRepository;
+    private  final GameSessionRepository gameSessionRepository;
 
     private Random random = new Random();
 
-    public GameSessionService(GameSessionRepository gameSessionRepository) {
-        this.gameSessionRepository = gameSessionRepository;
-    }
+
+
 
     // Start a new game session
     public Mono<GameSession> startGame(String player1) {

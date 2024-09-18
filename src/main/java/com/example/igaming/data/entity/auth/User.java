@@ -6,26 +6,27 @@
 
 package com.example.igaming.data.entity.auth;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.mapping.Column;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table( name = "app_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column("user_name")
     private String username;
 
-    @Column(nullable = false)
+    @Column("password")
     private String password;
 
-    @Column(nullable = false)
+    @Column("role")
     private String role;
 
     public Long getId() {
@@ -60,3 +61,4 @@ public class User {
         this.role = role;
     }
 }
+

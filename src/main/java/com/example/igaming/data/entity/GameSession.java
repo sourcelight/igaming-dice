@@ -5,6 +5,7 @@
 package com.example.igaming.data.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.relational.core.mapping.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

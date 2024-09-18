@@ -6,8 +6,16 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # Optional if you're using Hibernate ORM in reactive
+      ddl-auto: create  # Optional if you're using Hibernate ORM in reactive
     show-sql: true
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+    url: jdbc:postgresql://127.0.0.1:5433/igaming
+    user: igaminguser
+    password: igamingpassword
+
 
   security:
     user:
@@ -36,5 +44,8 @@ spring:
 
 logging:
   level:
-    org.springframework.r2dbc: DEBUG
-    org.springframework.security: DEBUG
+    root: debug
+    sql: debug
+#    org.springframework.r2dbc: trace
+#    org.springframework.security: trace
+#    org.liquibase: trace
